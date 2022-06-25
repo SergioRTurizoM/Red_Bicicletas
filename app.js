@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('/config/passport');
 const deserializeUser = require ('/config/passport.js');
+const session = require ('express-session');
+const Token = ('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -63,7 +66,7 @@ app.get ('/forgotPassword', function(req, res) {
 });
 
 app.post('/forgotPassword', function(req, res){
-  
+
 })
 
 // error handler

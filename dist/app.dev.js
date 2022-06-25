@@ -14,6 +14,12 @@ var passport = require('/config/passport');
 
 var deserializeUser = require('/config/passport.js');
 
+var session = require('express-session');
+
+var Token = 'jsonwebtoken';
+
+var jwt = require('jsonwebtoken');
+
 var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/users');
