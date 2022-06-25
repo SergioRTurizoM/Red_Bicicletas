@@ -8,6 +8,7 @@ const deserializeUser = require ('/config/passport.js');
 const session = require ('express-session');
 const Token = ('jsonwebtoken')
 const jwt = require('jsonwebtoken');
+const passport = require('/config/passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,7 +20,11 @@ const store = new session.MemoryStore;
 
 var app = express();
 
+
+
 var mongoose = require('mongoose');
+const passport = require('passport');
+const passport = require('passport');
 
 var mongoDB = 'mongodb://localhost/red_bicicletas';
 mongoose.connect(mongoDB, { useNewUrlParser: true});
