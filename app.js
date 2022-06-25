@@ -3,11 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const passport = require('/config/passport');
+const deserializeUser = require ('/config/passport.js');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bicicletasRouter = require('./routes/bicicletas');
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
+var usuarioAPIROuter = require ('./routes/api/usuarios');
+
+const store = new session.MemoryStore; 
 
 var app = express();
 
@@ -30,6 +35,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/login', function (req, res) {
+  res.render('session/login');
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/bicicletas', bicicletasRouter);
@@ -39,6 +48,23 @@ app.use('/api/bicicletas', bicicletasAPIRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
+app.post('/login', function(req, res, next) {
+  //passport
+});
+
+app.get('/logout', function(req, res, next) {
+  res.redirect('/');
+});
+
+app.get ('/forgotPassword', function(req, res) {
+
+});
+
+app.post('/forgotPassword', function(req, res){
+  
+})
 
 // error handler
 app.use(function(err, req, res, next) {

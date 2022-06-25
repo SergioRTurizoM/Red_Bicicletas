@@ -10,6 +10,10 @@ var cookieParser = require('cookie-parser');
 
 var logger = require('morgan');
 
+var passport = require('/config/passport');
+
+var deserializeUser = require('/config/passport.js');
+
 var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/users');
@@ -18,6 +22,9 @@ var bicicletasRouter = require('./routes/bicicletas');
 
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
 
+var usuarioAPIROuter = require('./routes/api/usuarios');
+
+var store = new session.MemoryStore();
 var app = express();
 
 var mongoose = require('mongoose');
@@ -39,6 +46,9 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express["static"](path.join(__dirname, 'public')));
+app.get('/login', function (req, res) {
+  res.render('session/login');
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/bicicletas', bicicletasRouter);
@@ -46,7 +56,14 @@ app.use('/api/bicicletas', bicicletasAPIRouter); // catch 404 and forward to err
 
 app.use(function (req, res, next) {
   next(createError(404));
-}); // error handler
+});
+app.post('/login', function (req, res, next) {//passport
+});
+app.get('/logout', function (req, res, next) {
+  res.redirect('/');
+});
+app.get('/forgotPassword', function (req, res) {});
+app.post('/forgotPassword', function (req, res) {}); // error handler
 
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
